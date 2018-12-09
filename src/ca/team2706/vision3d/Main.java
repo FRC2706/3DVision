@@ -61,7 +61,7 @@ public class Main {
 			@Override
 			public void onFrameReceived(FrameMode mode, ByteBuffer frame, int timestamp) {
 				try {
-					
+					frame.position(0);
 					RGBHandler.add(frame);
 					
 				} catch (Exception e) {

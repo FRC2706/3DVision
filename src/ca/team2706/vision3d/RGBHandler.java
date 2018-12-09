@@ -39,7 +39,6 @@ public class RGBHandler implements Runnable {
 		while(true) {
 			if(buffers.size() > 0) {
 				ByteBuffer frame = buffers.get(0);
-				System.out.println(frame.remaining());
 				BufferedImage image = new BufferedImage(640,480,BufferedImage.TYPE_3BYTE_BGR);
 				Graphics g = image.getGraphics();
 				int x = 0;
@@ -72,7 +71,7 @@ public class RGBHandler implements Runnable {
 				
 			}
 			try {
-				Thread.sleep(1);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
