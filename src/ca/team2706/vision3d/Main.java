@@ -1,7 +1,5 @@
 package ca.team2706.vision3d;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -27,35 +25,28 @@ public class Main {
 	private static Device dev;
 
 	public static void main(String[] args) throws InterruptedException {
+		
+		RGBHandler.start();
+		
 		initKinect();
-
+		
 		startDepth();
 		startVideo();
-
-		shutdownKinect();
+		
+		while(true) {
+			Thread.sleep(1);
+		}
 	}
 
 	public static void startDepth() {
-		dev.setDepthFormat(DepthFormat.D10BIT);
+		dev.setDepthFormat(DepthFormat.D11BIT);
 		dev.startDepth(new DepthHandler() {
 
 			@Override
 			public void onFrameReceived(FrameMode mode, ByteBuffer frame, int timestamp) {
 				try {
 
-					while (true) {
-
-						try {
-							int i = frame.getInt();
-							
-							System.out.println(i);
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-							break;
-						}
-
-					}
+					
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,14 +54,16 @@ public class Main {
 			}
 		});
 	}
-
+	
 	public static void startVideo() {
 		dev.setVideoFormat(VideoFormat.RGB);
 		dev.startVideo(new VideoHandler() {
 			@Override
 			public void onFrameReceived(FrameMode mode, ByteBuffer frame, int timestamp) {
 				try {
-
+					
+					RGBHandler.add(frame);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
