@@ -82,7 +82,7 @@ public class DepthDumper implements Runnable {
 								+ d.getHeight() + " " + d.getNumSides());
 
 					}
-
+					System.out.println("Frame took "+(System.currentTimeMillis()-startTime)+"ms");
 					if (dumpData) {
 						File outFile = new File(dumpDir, stamp + ".depth");
 						outFile.delete();
@@ -106,9 +106,6 @@ public class DepthDumper implements Runnable {
 						stamp++;
 						System.out.println(stamp+" "+outFile.getAbsolutePath()+" "+outFile.exists());
 					}
-					
-					System.out.println("Frame took "+(System.currentTimeMillis()-startTime)+"ms");
-					
 				}
 				try {
 					Thread.sleep(10);
