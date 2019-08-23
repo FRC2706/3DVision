@@ -4,3 +4,4 @@ bin/
 .settings/
 *.log
 data/
+fix.o
