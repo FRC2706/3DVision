@@ -51,7 +51,7 @@ public class DepthDumper implements Runnable {
 					
 					Integer[] data = buffers.get(buffers.size()-1);
 					buffers.remove(buffers.size()-1);
-					if(buffers.size() > 30) {
+					if(buffers.size() > 2) {
 						buffers.clear();
 					}
 
@@ -68,7 +68,7 @@ public class DepthDumper implements Runnable {
 					SceneData sceneData = new SceneData(points, 640, 480);
 					
 					long startEdges = System.currentTimeMillis();
-					SceneData edges = ObjectRecognizer.detectEdges(sceneData,300000000);
+					SceneData edges = ObjectRecognizer.detectEdges(sceneData,100000000, 0);
 					System.out.println("Edges took "+(System.currentTimeMillis()-startEdges)+" ms");
 					BufferedImage image = new BufferedImage(640,480,BufferedImage.TYPE_INT_ARGB);
 					Graphics g = image.getGraphics();
